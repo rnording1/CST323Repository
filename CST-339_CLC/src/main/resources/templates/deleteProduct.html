@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Delete Products</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+
+<body>
+	<!--Navbar implementation-->
+	<div th:replace="layouts/navbar :: navbar"></div>
+
+	<div class="container mt-5">
+		<h2>Delete Products</h2>
+		<form th:action="@{/deleteProduct}" method="post">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Select</th> <!-- Column for checkboxes to select products -->
+						<th>Product Name</th> <!-- Column for product names -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="product : ${products}"> <!-- Loop through products -->
+						<td>
+							<!-- Checkbox to select product for deletion, using productID as value -->
+							<input type="checkbox" name="productIds" th:value="${product.productID}" />
+						</td>
+						<td th:text="${product.name}">Product Name</td> <!-- Display product name -->
+					</tr>
+				</tbody>
+			</table>
+			<!-- Submit button to delete selected products -->
+			<button type="submit" class="btn btn-danger">Delete Selected</button>
+		</form>
+	</div>
+</body>
+
+</html>

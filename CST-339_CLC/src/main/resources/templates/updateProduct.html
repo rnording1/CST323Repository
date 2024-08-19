@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Update Products</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+</head>
+
+<body>
+    <!-- Navbar implementation -->
+    <div th:replace="layouts/navbar :: navbar"></div>
+
+    <div class="container mt-5">
+        <h2>Update Products</h2>
+        <form th:action="@{/updateProduct}" method="post">
+            <input type="hidden" id="productID" name="productID">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Product Name</th>
+                        <th>Product Description</th>
+                        <th>Product Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td><input type="radio" name="productRadio"
+                                   th:data-product-id="${product.productID}"
+                                   th:data-product-name="${product.name}"
+                                   th:data-product-description="${product.description}"
+                                   th:data-product-price="${product.price}"
+                                   onclick="selectProduct(event)"></td>
+                        <td th:text="${product.name}">Product Name</td>
+                        <td th:text="${product.description}">Product Description</td>
+                        <td th:text="${product.price}">Product Price</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Enter product description">
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" name="price" placeholder="Enter product price">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Product</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            window.selectProduct = function(event) {
+                const productID = event.target.getAttribute('data-product-id');
+                const productName = event.target.getAttribute('data-product-name');
+                const productDescription = event.target.getAttribute('data-product-description');
+                const productPrice = event.target.getAttribute('data-product-price');
+
+                document.getElementById('productID').value = productID;
+                document.getElementById('name').value = productName;
+                document.getElementById('description').value = productDescription;
+                document.getElementById('price').value = productPrice;
+
+                console.log(`Product ID: ${productID}`);
+                console.log(`Product Name: ${productName}`);
+                console.log(`Product Description: ${productDescription}`);
+                console.log(`Product Price: ${productPrice}`);
+            }
+        });
+    </script>
+</body>
+
+</html>

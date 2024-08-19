@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Registration</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			background-color: #F8F8F8;
+			/* Light popcorn white color */
+			justify-content: center;
+			align-items: center;
+			margin: 0;
+		}
+
+		.container {
+			background-color: #ffffff;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			display: flex;
+			align-items: center;
+			width: 800px;
+		}
+
+		.image-section {
+			flex: 1;
+			text-align: center;
+		}
+
+		.image-section img {
+			border-radius: 50%;
+			width: 150px;
+			height: 150px;
+		}
+
+		.image-section h2 {
+			font-size: 24px;
+			margin-top: 10px;
+			color: #333;
+		}
+
+		.form-section {
+			flex: 2;
+			margin-left: 20px;
+		}
+
+		.form-section h1 {
+			text-align: center;
+			color: #333;
+			margin-bottom: 20px;
+		}
+
+		.form-section label {
+			display: block;
+			margin-bottom: 5px;
+			color: #555;
+		}
+
+		.form-section input {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-sizing: border-box;
+		}
+
+		.form-section button {
+			width: 100%;
+			padding: 10px;
+			background-color: #0A1F44;
+			border: none;
+			border-radius: 5px;
+			color: #fff;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+		.form-section button:hover {
+			background-color: #0D4F8B;
+		}
+
+		.error {
+			color: red;
+			font-size: 0.9em;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!--Navbar implementation-->
+	<div th:replace="layouts/navbar :: navbar"></div>
+
+	<div class="container">
+		<div class="image-section">
+			<img src="/img/Register.png" alt="User Image">
+			<h2>HEY! I AM NEW USER</h2>
+		</div>
+		<div class="form-section">
+			<h1>Registration</h1>
+			<form th:action="@{/register}" th:object="${user}" method="post">
+				<div>
+					<label>First Name:</label>
+					<input type="text" th:field="*{firstName}" />
+					<div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error">First Name
+						Error</div>
+				</div>
+				<div>
+					<label>Last Name:</label>
+					<input type="text" th:field="*{lastName}" />
+					<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error">Last Name Error
+					</div>
+				</div>
+				<div>
+					<label>Email:</label>
+					<input type="email" th:field="*{email}" />
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Email Error</div>
+				</div>
+				<div>
+					<label>Phone Number:</label>
+					<input type="text" th:field="*{phoneNumber}" />
+					<div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error">Phone
+						Number Error</div>
+				</div>
+				<div>
+					<label>Username:</label>
+					<input type="text" th:field="*{username}" />
+					<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error">Username Error
+					</div>
+				</div>
+				<div>
+					<label>Password:</label>
+					<input type="password" th:field="*{password}" />
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error">Password Error
+					</div>
+				</div>
+				<div>
+					<button type="submit">Register</button>
+				</div>
+			</form>
+			<p><a href="/login">Already have an account? Login Here</a></p>
+		</div>
+	</div>
+</body>
+
+</html>

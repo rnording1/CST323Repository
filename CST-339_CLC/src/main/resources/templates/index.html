@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Home Page</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+	<style>
+		.item-category {
+			min-height: 200px;
+		}
+
+		.container-fluid {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+		.row {
+	    display: flex;
+	    flex-wrap: wrap;
+	}
+	</style>
+</head>
+
+<body>
+
+	<!--Navbar implementation-->
+	<div th:replace="layouts/navbar :: navbar"></div>
+
+	<!-- Main Container -->
+	<div class="container-fluid">
+		<div class="row bg-light py-5 text-center mt-3">
+			<div class="col">
+				<h2>Home Banner / Item Type Banner</h2>
+			</div>
+		</div>
+
+		<div class="row my-3">
+			<div class="col-md-6">
+				<input type="text" class="form-control" placeholder="Search within specific item page">
+			</div>
+			<div class="col-md-6 text-right">
+				<select class="form-control">
+					<option>Price: Low to High</option>
+					<option>Price: High to Low</option>
+					<option>A to Z</option>
+					<option>Z to A</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="row">
+        	<div class="col-sm-6 col-md-4 col-lg-3 mb-4" th:each="product: ${products}">
+				<div class="bg-light p-3 text-center item-category">
+                    <h5 th:text="${product.name}">Product Name</h5>
+                    <p th:text="${product.description}">Product Description</p>
+                    <p th:text="${product.price}">Product Price</p>
+                </div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

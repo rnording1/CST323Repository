@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Create Product</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/navbar.css}">
+</head>
+
+<div>
+
+	<!--Navbar implementation-->
+	<div th:replace="layouts/navbar :: navbar"></div>
+
+	<!--Create Product-->
+	<div class="container-fluid">
+		<h2>Create Product</h2>
+		<form th:action="@{/createProduct}" th:object="${product}" method="post">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" id="name" class="form-control" th:field="*{name}">
+				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea id="description" class="form-control" th:field="*{description}"></textarea>
+				<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></div>
+			</div>
+			<div class="form-group">
+				<label for="price">Price</label>
+				<input type="number" step="0.01" id="price" class="form-control" th:field="*{price}">
+				<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></div>
+			</div>
+			<button type="submit" class="btn btn-success">Create</button>
+			<div th:if="${param.success}" class="alert alert-success mt-3">Product created successfully!</div>
+		</form>
+	</div>
+</div>
+</body>
+
+</html>

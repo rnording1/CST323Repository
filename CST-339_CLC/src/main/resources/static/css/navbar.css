@@ -1,0 +1,49 @@
+.navbar-toggler-icon {
+	/* Customizes the navbar toggle icon for dark theme */
+	background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="rgba%280, 0, 0, 0.5%29" stroke-width="2" linecap="round" linejoin="round" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+}
+
+.offcanvas-collapse {
+	/* Styles for the off-canvas menu */
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 100%;
+	width: 300px;
+	padding-right: 1rem;
+	padding-left: 1rem;
+	overflow-y: auto;
+	background-color: #343a40;
+	/* Dark background color */
+	transition: left 0.4s ease-in-out;
+	/* Smooth transition effect */
+	z-index: 1050;
+	/* Ensures the menu is on top */
+}
+
+.offcanvas-collapse.open {
+	right: 0;
+	/* Opens the off-canvas menu */
+}
+
+.nav-item {
+	color: lightgreen;
+	/* Sets color for nav items */
+	padding: 10px;
+}
+
+.offcanvas-collapse a {
+	color: green;
+	/* Sets color for links in off-canvas menu */
+	text-decoration: none;
+	/* Removes underline from links */
+}
+
+.navbar-toggler {
+	display: block;
+	color: white;
+	border: none;
+	background-color: transparent;
+	z-index: 1051;
+	/* Ensures the toggle button stays above other elements */
+}
